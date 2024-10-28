@@ -16,21 +16,30 @@ int main() {
   freeList me(RAM,8192);
   me.print();
 
+  printf("Reserve 100\n");
   long int* addr1 = me.reserve_space(100);
   me.print();
+
+  printf("Reserve 200\n");
   long int* addr2 = me.reserve_space(200);
   me.print();
 
+  printf("Free Address 1\n");
+  me.free_space( addr2 );
   me.free_space( addr1 );
   me.print();
+
+  printf("Coalesce\n");
   me.coalesce_forward();
   me.print();
 
-  me.free_space( addr2 );
-  me.print();
+  // printf("Free Address 2\n");
+  
+  // me.print();
 
-  me.coalesce_forward();
-  me.print();
+  // printf("Coalesce\n");
+  // me.coalesce_forward();
+  // me.print();
   
   
   delete RAM;
